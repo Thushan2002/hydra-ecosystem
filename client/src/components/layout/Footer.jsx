@@ -9,6 +9,7 @@ import {
   FiGithub,
 } from "react-icons/fi";
 import logo_white from "../../assets/logo_white.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -35,10 +36,10 @@ const Footer = () => {
     {
       title: "Company",
       links: [
-        { name: "About Us", href: "#" },
-        { name: "Projects", href: "#" },
-        { name: "Careers", href: "#" },
-        { name: "Contact", href: "#" },
+        { name: "About Us", href: "/about" },
+        { name: "Projects", href: "/projects" },
+        { name: "Technology", href: "/technology" },
+        { name: "Contact", href: "/contact" },
       ],
     },
   ];
@@ -87,11 +88,11 @@ const Footer = () => {
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.name}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-silver hover:text-ecolime transition-colors duration-300">
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
