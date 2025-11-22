@@ -6,6 +6,8 @@ import { Route, Routes } from "react-router-dom";
 import About from "./pages/About";
 import Technology from "./pages/Technology";
 import Farming from "./pages/Farming";
+import Projects from "./pages/Projects";
+import Contact from "./pages/Contact";
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/technology" element={<Technology />} />
         <Route path="/farming" element={<Farming />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </div>
