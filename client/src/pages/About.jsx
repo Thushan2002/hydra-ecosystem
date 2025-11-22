@@ -7,6 +7,7 @@ import { containerVariants } from "../components/animations/Container";
 import { itemVariants } from "../components/animations/Item";
 import { staggerContainer } from "../components/animations/StaggerContainer";
 import { cardVariants } from "../components/animations/CardSpring";
+import { Link } from "react-router-dom";
 
 const About = () => {
   const values = [
@@ -104,7 +105,16 @@ const About = () => {
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="organic" size="lg">
+              <Button
+                variant="organic"
+                size="lg"
+                onClick={() => {
+                  document.getElementById("story")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }}
+                className="cursor-pointer">
                 Our Story
               </Button>
               <Button variant="outline" size="lg">
@@ -116,7 +126,9 @@ const About = () => {
       </section>
 
       {/* Story Section */}
-      <section className="py-20 bg-linear-to-br from-primary via-forest to-primary relative">
+      <section
+        id="story"
+        className="py-20 bg-linear-to-br from-primary via-forest to-primary relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -351,8 +363,11 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-linear-to-r from-forest to-primary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+      <section className="py-20 relative bg-white/5 backdrop-blur-sm border-t border-white/10">
+        <div className="absolute inset-0 bg-linear-to-r from-forest/20 via-transparent to-primary/20 pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -361,16 +376,25 @@ const About = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 drop-shadow-2xl">
               Join Our Mission
             </h2>
-            <p className="text-xl text-silver mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-silver mb-8 max-w-2xl mx-auto leading-relaxed">
               Be part of the agricultural revolution. Together, we can create a
               sustainable future where technology and nature thrive in harmony.
             </p>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="organic" size="lg">
-                Partner With Us
+              <Button
+                variant="organic"
+                size="lg"
+                className="shadow-lg hover:shadow-ecolime/30 transition-shadow">
+                <Link to="/contact">Partner With Us</Link>
               </Button>
-              <Button variant="outline" size="lg">
-                Learn More
+
+              <Button
+                variant="outline"
+                size="lg"
+                as={Link}
+                className="border-2 border-white text-white hover:bg-white/20 shadow-lg transition-all">
+                <Link to="/projects"> Learn More</Link>
               </Button>
             </div>
           </motion.div>

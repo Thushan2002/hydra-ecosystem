@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import HomePage from "./pages/HomePage";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import About from "./pages/About";
 import Technology from "./pages/Technology";
 import Farming from "./pages/Farming";
@@ -10,6 +10,11 @@ import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 
 const App = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
   return (
     <div>
       <Navbar />

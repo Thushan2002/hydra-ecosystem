@@ -17,6 +17,7 @@ import { cardVariants } from "../components/animations/CardSpring";
 import { iconVariants } from "../components/animations/IconSpin";
 import { pulseVariants } from "../components/animations/Pulse";
 import { containerVariants } from "../components/animations/Container";
+import { Link } from "react-router-dom";
 
 const Farming = () => {
   const [activeDivision, setActiveDivision] = useState(0);
@@ -277,7 +278,7 @@ const Farming = () => {
                 Explore Our Farms
               </Button>
               <Button variant="outline" size="lg">
-                View Products
+                <Link to={"/projects"}> View Products</Link>
               </Button>
             </motion.div>
           </motion.div>

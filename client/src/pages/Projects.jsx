@@ -15,6 +15,7 @@ import Button from "../components/ui/Button";
 import { containerVariants } from "../components/animations/Container";
 import { itemVariants } from "../components/animations/Item";
 import { cardVariants } from "../components/animations/CardSpring";
+import { Link } from "react-router-dom";
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -464,7 +465,7 @@ const Projects = () => {
       </AnimatePresence>
 
       {/* CTA Section */}
-      <section className="py-20 bg-linear-to-r from-forest to-primary">
+      <section className="py-20 backdrop-blur-sm  bg-linear-to-r from-forest to-primary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -479,11 +480,11 @@ const Projects = () => {
               your community.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="organic" size="lg">
-                Start a Project
-              </Button>
-              <Button variant="outline" size="lg">
-                Contact Our Team
+              <Button
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white/20"
+                size="lg">
+                <Link to={"/contact"}> Contact Our Team</Link>
               </Button>
             </div>
           </motion.div>

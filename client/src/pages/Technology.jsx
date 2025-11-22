@@ -19,6 +19,7 @@ import { staggerContainer } from "../components/animations/StaggerContainer";
 import { cardVariants } from "../components/animations/CardSpring";
 import { iconVariants } from "../components/animations/IconSpin";
 import { pulseVariants } from "../components/animations/Pulse";
+import { Link } from "react-router-dom";
 
 const Technology = () => {
   const technologies = [
@@ -188,14 +189,20 @@ const Technology = () => {
               <Button
                 variant="organic"
                 size="lg"
-                className="bg-linear-to-r from-ecolime to-leaf text-forest font-bold shadow-lg">
+                onClick={() => {
+                  document.getElementById("technologies")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }}
+                className="cursor-pointer">
                 See Technology in Action
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 className="border-2 border-white text-white hover:bg-white/20">
-                Request Demo
+                <Link to={"/contact"}>Request Demo</Link>
               </Button>
             </motion.div>
           </motion.div>
@@ -203,7 +210,7 @@ const Technology = () => {
       </section>
 
       {/* Core Technologies */}
-      <section className="py-20 relative">
+      <section id="technologies" className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -425,7 +432,7 @@ const Technology = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-linear-to-r from-forest to-primary">
+      <section className="py-20 backdrop-blur-sm  bg-linear-to-r from-forest to-primary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -441,10 +448,13 @@ const Technology = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="organic" size="lg">
-                Get Started Today
+                <Link to={"/farming"}>Get Started Today</Link>
               </Button>
-              <Button variant="outline" size="lg">
-                Schedule Demo
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-2 border-white text-white hover:bg-white/20">
+                <Link to={"/contact"}>Request Demo</Link>
               </Button>
             </div>
           </motion.div>
