@@ -67,11 +67,6 @@ const Homepage = () => {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-techblue via-forest/95 to-primary/90 relative overflow-hidden">
-      {/* Floating background plants */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <FloatingPlants />
-      </div>
-
       <div className="relative z-10">
         <section
           id="home"
