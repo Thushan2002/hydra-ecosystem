@@ -3,69 +3,12 @@ import { motion } from "framer-motion";
 import { FiUsers, FiTarget, FiAward, FiGlobe, FiZap } from "react-icons/fi";
 import { FaLeaf } from "react-icons/fa";
 import Button from "../components/ui/Button";
+import { containerVariants } from "../components/animations/Container";
+import { itemVariants } from "../components/animations/Item";
+import { staggerContainer } from "../components/animations/StaggerContainer";
+import { cardVariants } from "../components/animations/CardSpring";
 
 const About = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
-      },
-    },
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: {
-      scale: 0.8,
-      opacity: 0,
-      y: 50,
-    },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 80,
-        damping: 15,
-      },
-    },
-    hover: {
-      y: -10,
-      scale: 1.05,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 15,
-      },
-    },
-  };
-
   const values = [
     {
       icon: FiUsers,

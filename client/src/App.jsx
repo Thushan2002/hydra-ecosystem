@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import { Route, Routes } from "react-router-dom";
 import About from "./pages/About";
 import Technology from "./pages/Technology";
+import Farming from "./pages/Farming";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/technology" element={<Technology />} />
+        <Route path="/farming" element={<Farming />} />
       </Routes>
       <Footer />
     </div>
