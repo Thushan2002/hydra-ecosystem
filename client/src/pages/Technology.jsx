@@ -150,14 +150,14 @@ const Technology = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-techblue via-forest to-primary relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br  from-primary via-forest to-leaf relative overflow-hidden">
       {/* Subtle animated overlay */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-0 left-0 w-full h-full bg-linear-to-tr from-leaf/10 via-transparent to-ecolime/5"></div>
       </div>
 
       {/* Hero Section - Keeping original colors */}
-      <section className="h-screen flex justify-center items-center relative py-20 bg-linear-to-r from-primary via-forest to-leaf overflow-hidden">
+      <section className="h-screen flex justify-center items-center bg-linear-to-r from-techblue via-forest to-primary relative py-20  overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-10 left-10 w-32 h-32 bg-ecolime rounded-full blur-3xl"></div>
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-leaf rounded-full blur-3xl"></div>

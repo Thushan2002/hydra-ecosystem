@@ -8,6 +8,8 @@ import { itemVariants } from "../components/animations/Item";
 import { staggerContainer } from "../components/animations/StaggerContainer";
 import { cardVariants } from "../components/animations/CardSpring";
 import { Link } from "react-router-dom";
+import FloatingDots from "../components/animations/FloatingDots";
+import FloatingPlants from "../components/animations/FloatingPlants";
 
 const About = () => {
   const values = [
@@ -82,6 +84,11 @@ const About = () => {
 
       {/* Hero Section */}
       <section className="relative h-screen bg-transparent flex justify-center items-center overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <FloatingDots />
+          <FloatingPlants />
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="hidden"

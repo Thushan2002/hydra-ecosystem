@@ -24,7 +24,7 @@ const generateParticles = (count = 5) => {
   });
 };
 
-const particles = generateParticles(5); // Change to 4–6 if needed
+const particles = generateParticles(5);
 
 const FloatingPlants = () => {
   return (

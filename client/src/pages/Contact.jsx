@@ -14,6 +14,9 @@ import Button from "../components/ui/Button";
 import { containerVariants } from "../components/animations/Container";
 import { itemVariants } from "../components/animations/Item";
 import { cardVariants } from "../components/animations/CardSpring";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Icon } from "leaflet";
+import "leaflet/dist/leaflet.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -88,6 +91,18 @@ const Contact = () => {
       color: "hover:bg-sky-500",
     },
   ];
+
+  // Fix Leaflet default icon issue in React
+  const customIcon = new Icon({
+    iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+    iconRetinaUrl:
+      "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+    shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
 
   return (
     <div className="min-h-screen bg-linear-to-br from-techblue via-forest to-primary relative overflow-hidden">
@@ -303,20 +318,66 @@ const Contact = () => {
       </section>
 
       {/* Location Map Placeholder */}
-      <motion.div
-        variants={itemVariants}
-        className="bg-white/5 w-5xl mx-auto rounded-2xl p-6 border border-white/20">
-        <h3 className="text-xl font-bold text-white text-center mb-4">
-          Our Location
-        </h3>
-        <div className="aspect-video bg-white/10 rounded-xl flex items-center justify-center border border-white/20">
-          <div className="text-center text-silver">
-            <FiMapPin className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p className="font-semibold">Trincomalee, Sri Lanka</p>
-            <p className="text-sm">Interactive map coming soon</p>
-          </div>
+      <section className="py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+            className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl overflow-hidden">
+            <motion.h2
+              variants={itemVariants}
+              className="text-4xl font-bold text-white text-center mb-8 drop-shadow-lg">
+              Find Us on the Map
+            </motion.h2>
+
+            <div className="rounded-2xl overflow-hidden shadow-2xl border border-ecolime/30">
+              <MapContainer
+                center={[8.7189671, 81.174844]}
+                zoom={15}
+                style={{ height: "500px", width: "100%" }}
+                scrollWheelZoom={true}>
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                />
+                <Marker position={[8.7189671, 81.174844]} icon={customIcon}>
+                  <Popup>
+                    <div className="text-center font-semibold">
+                      <p className="text-lg text-primary">
+                        Neirah Tech Solution (Pvt) Ltd.
+                      </p>
+                      <p className="text-sm">Ward No:04, Valaiyootru</p>
+                      <p className="text-sm">Nilaveli 31000</p>
+                      <p className="text-sm">Trincomalee, Sri Lanka</p>
+                      <p className="text-xs text-ecolime mt-2">
+                        We'd love to see you!
+                      </p>
+                    </div>
+                  </Popup>
+                </Marker>
+              </MapContainer>
+            </div>
+
+            <motion.div variants={itemVariants} className="mt-6 text-center">
+              <p className="text-white text-lg font-medium">
+                Neirah Tech Solution (Pvt) Ltd.
+              </p>
+              <p className="text-silver">
+                Ward No:04, Valaiyootru, Nilaveli 31000, Sri Lanka
+              </p>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=8.7189671,81.174844"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-4 px-6 py-3 bg-ecolime/20 border border-ecolime rounded-full text-ecolime font-semibold hover:bg-ecolime hover:text-primary transition-all">
+                Open in Google Maps
+              </a>
+            </motion.div>
+          </motion.div>
         </div>
-      </motion.div>
+      </section>
 
       {/* FAQ Section */}
       <section className="py-20 relative">
