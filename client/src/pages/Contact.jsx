@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   FiMail,
@@ -8,6 +8,8 @@ import {
   FiSend,
   FiUser,
   FiMessageCircle,
+  FiCheckCircle,
+  FiAlertCircle,
 } from "react-icons/fi";
 import { FaWhatsapp, FaLinkedin, FaTwitter } from "react-icons/fa";
 import Button from "../components/ui/Button";
@@ -17,6 +19,9 @@ import { cardVariants } from "../components/animations/CardSpring";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
+import axios from "axios";
+import api from "../api/api";
+import Spinner from "../components/ui/Spinner";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -24,6 +29,19 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
+
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => {
+        setMessage("");
+        setMessageType("");
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -32,12 +50,35 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      setLoading(true);
+      setMessage("");
+      setMessageType("");
+
+      const response = await api.post(`/message/send`, {
+        fullName: formData.name,
+        email: formData.email,
+        message: formData.message,
+      });
+
+      if (response.data.success) {
+        setMessage(response.data.message || "Message sent successfully!");
+        setMessageType("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setMessage(response.data.message || "Failed to send message");
+        setMessageType("error");
+      }
+    } catch (error) {
+      setMessage(
+        error.message || "An error occurred while sending your message"
+      );
+      setMessageType("error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -287,15 +328,39 @@ const Contact = () => {
 
                   {/* Submit Button */}
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}>
+                    whileHover={{ scale: loading ? 1 : 1.02 }}
+                    whileTap={{ scale: loading ? 1 : 0.98 }}>
                     <Button
                       type="submit"
                       variant="organic"
                       size="lg"
-                      className="w-full">
-                      <FiSend className="mr-2" />
-                      Send Message
+                      className="w-full relative"
+                      disabled={loading}>
+                      {loading ? (
+                        <div className="flex items-center justify-center space-x-2">
+                          <Spinner size="sm" color="white" />
+                          <span>Sending...</span>
+                        </div>
+                      ) : message ? (
+                        <div
+                          className={`flex items-center justify-center space-x-2 ${
+                            messageType === "success"
+                              ? "text-white"
+                              : "text-white"
+                          }`}>
+                          {messageType === "success" ? (
+                            <FiCheckCircle className="w-5 h-5" />
+                          ) : (
+                            <FiAlertCircle className="w-5 h-5" />
+                          )}
+                          <span className="text-sm font-medium">{message}</span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-center">
+                          <FiSend className="mr-2" />
+                          Send Message
+                        </div>
+                      )}
                     </Button>
                   </motion.div>
                 </form>
