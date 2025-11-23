@@ -349,7 +349,9 @@ const Farming = () => {
                           className={`w-20 h-20 bg-linear-to-r ${divisions[activeDivision].color} rounded-2xl flex items-center justify-center shadow-lg`}
                           animate={{ rotate: [0, 10, -10, 0] }}
                           transition={{ duration: 4, repeat: Infinity }}>
-                          {divisions[activeDivision].icon}
+                          {React.createElement(divisions[activeDivision].icon, {
+                            className: "w-10 h-10 text-white",
+                          })}
                         </motion.div>
                         <div>
                           <h2 className="text-4xl font-bold text-white mb-2">

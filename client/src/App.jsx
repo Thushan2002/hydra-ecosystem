@@ -37,11 +37,6 @@ const App = () => {
 
       {!isFirstLoad && (
         <div>
-          {/* Background Elements */}
-          <div className="absolute inset-0 pointer-events-none">
-            <FloatingDots />
-            <FloatingPlants />
-          </div>
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
