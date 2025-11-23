@@ -12,7 +12,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: "*" }));
+app.use(cors({ origin: "https://hydra-ecosystem.vercel.app/" }));
 app.use(helmet());
 
 // Test Check Route
