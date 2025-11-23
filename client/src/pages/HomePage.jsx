@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Button from "../components/ui/Button";
 import drone_farm from "../assets/drone_farm.png";
-import drone_mp4 from "../assets/drone.mp4";
+import drone_img from "../assets/drone.png";
 import ai_farm from "../assets/ai_farm.png";
 import IOT_farm from "../assets/IOT_farm.png";
 import cult_farm from "../assets/cult_farm.png";
@@ -120,24 +120,32 @@ const Homepage = () => {
                 </motion.div>
               </div>
 
-              {/* Hero Visual with Video */}
+              {/* Hero Visual with Animated Drone*/}
+
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
                 className="lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
-                <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden shadow-2xl border border-silver/20">
-                  <video
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    poster="/videos/hero-fallback.jpg" // optional fallback image
-                  >
-                    <source src={drone_mp4} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                <div className="relative w-100 h-80 md:w-96 md:h-96 ">
+                  {/* Animated Drone */}
+                  <motion.div
+                    className="absolute w-full h-auto"
+                    animate={{
+                      x: [-100, 100, 50, 200, 50, 200, -100],
+                      y: [50, 100, 250, 150, 300, 50, 50],
+                    }}
+                    transition={{
+                      duration: 20,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}>
+                    <img
+                      src={drone_img}
+                      alt="AI Drone"
+                      className="w-2000 h-full object-contain drop-shadow-2xl"
+                    />
+                  </motion.div>
                 </div>
               </motion.div>
             </motion.div>
