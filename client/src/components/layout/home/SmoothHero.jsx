@@ -9,11 +9,11 @@ import { FiArrowRight, FiMapPin } from "react-icons/fi";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
-import { itemVariants } from "../animations/Item";
-import drone_agri from "../../assets/drone_agri.png";
-import smart_farm from "../../assets/smart_farm.png";
-import ai_analysis from "../../assets/ai_analysis.png";
-import organic_farm from "../../assets/organic_farm.png";
+import { itemVariants } from "../../animations/Item";
+import drone_agri from "../../../assets/drone_agri.png";
+import smart_farm from "../../../assets/smart_farm.png";
+import ai_analysis from "../../../assets/ai_analysis.png";
+import organic_farm from "../../../assets/organic_farm.png";
 
 export const SmoothHero = () => {
   return (

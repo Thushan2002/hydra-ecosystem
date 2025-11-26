@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
 import Button from "../components/ui/Button";
 import drone_farm from "../assets/drone_farm.png";
 import ai_farm from "../assets/ai_farm.png";
@@ -9,70 +8,15 @@ import cult_farm from "../assets/cult_farm.png";
 import FloatingPlants from "../components/animations/FloatingPlants";
 import FloatingDots from "../components/animations/FloatingDots";
 import { Link } from "react-router-dom";
-
 import ParticleRings from "../components/three/ParticleRings";
-import { SmoothHero } from "../components/layout/SmoothHero";
-
-// Drone Component with Scroll Animation
+import { SmoothHero } from "../components/layout/home/SmoothHero";
+import Mission from "../components/layout/home/Mission";
 
 const Homepage = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-    },
-  };
-
-  const features = [
-    {
-      image: ai_farm,
-      title: "AI-Powered Analytics",
-      description:
-        "Advanced machine learning algorithms optimize crop yields and resource allocation.",
-      bgColor: "bg-linear-to-br from-techblue to-droneblue",
-      borderColor: "border-droneblue/20",
-    },
-    {
-      image: drone_farm,
-      title: "Drone Technology",
-      description:
-        "Autonomous drones monitor crop health and automate precision farming tasks.",
-      bgColor: "bg-linear-to-br from-droneblue to-primary",
-      borderColor: "border-primary/20",
-    },
-    {
-      image: IOT_farm,
-      title: "Smart IoT Farming",
-      description:
-        "Real-time sensor networks and automated systems for precision agriculture.",
-      bgColor: "bg-linear-to-br from-primary to-leaf",
-      borderColor: "border-leaf/20",
-    },
-    {
-      image: cult_farm,
-      title: "Mushroom Cultivation",
-      description:
-        "Smart controlled environments for optimal mushroom growth and quality.",
-      bgColor: "bg-linear-to-br from-mushroom to-seedgold",
-      borderColor: "border-seedgold/20",
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-linear-to-br from-techblue via-forest/95 to-primary/90 relative overflow-hidden">
       <div className="relative z-10">
+        {/* Animated Hero section */}
         <SmoothHero />
         <section
           id="home"
@@ -106,105 +50,7 @@ const Homepage = () => {
         </section>
 
         {/* Mission Overview Section */}
-        <section className="py-20 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-center mb-16">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6 }}
-                className="inline-block mb-4">
-                <div className="w-20 h-1 bg-linear-to-r from-ecolime to-leaf rounded-full mx-auto"></div>
-              </motion.div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg mb-6">
-                Our Mission
-              </h2>
-              <p className="text-xl text-silver max-w-4xl mx-auto leading-relaxed">
-                To revolutionize agriculture by seamlessly integrating
-                artificial intelligence, drone technology, and IoT solutions
-                with traditional organic farming methods, creating sustainable
-                ecosystems that benefit both humanity and nature.
-              </p>
-            </motion.div>
-
-            {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature.title}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: index * 0.15 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, y: -8 }}
-                  className="group relative">
-                  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl"></div>
-                  <div className="relative bg-leaf/15 backdrop-blur-md rounded-2xl border border-white/30 p-6 h-full shadow-2xl transition-all duration-300 group-hover:shadow-ecolime/20">
-                    <div className="mb-4 p-4 rounded-xl bg-linear-to-br from-silver/30 to-white/80">
-                      <div className="grid place-items-center">
-                        <motion.img
-                          src={feature.image}
-                          alt={feature.title}
-                          className="w-32 h-32 object-contain drop-shadow-md"
-                          whileHover={{ scale: 1.12, rotate: 5 }}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="flex items-center mb-3">
-                      <div
-                        className={`w-2 h-8 ${
-                          feature.bgColor.split(" ")[1]
-                        } rounded-full mr-3`}></div>
-                      <h3 className="text-xl font-bold text-forest">
-                        {feature.title}
-                      </h3>
-                    </div>
-
-                    <p className="text-silver leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { number: "50%", label: "Increase in Yield" },
-                { number: "30%", label: "Water Savings" },
-                { number: "100+", label: "Native Species" },
-                { number: "24/7", label: "AI Monitoring" },
-              ].map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="text-center p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
-                  <div className="text-4xl font-bold text-ecolime drop-shadow-md mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-silver font-medium">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
+        <Mission />
 
         {/* CTA Section */}
         <section className="py-20 relative overflow-hidden">
